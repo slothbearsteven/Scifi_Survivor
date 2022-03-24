@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 public abstract class Interactable : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    private void Reset()
+    {
+        GetComponent<BoxCollider2D>().isTrigger = true;
+    }
     public abstract void Interact();
 
 
