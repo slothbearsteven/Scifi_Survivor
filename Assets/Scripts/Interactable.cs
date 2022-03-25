@@ -23,7 +23,7 @@ public abstract class Interactable : MonoBehaviour
     {
 
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("trigger enter");
         if (other.CompareTag("Player"))
@@ -31,7 +31,7 @@ public abstract class Interactable : MonoBehaviour
             other.GetComponent<PlayerController>().OpenInteractableIcon();
         }
     }
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         Debug.Log("trigger exit");
         if (other.CompareTag("Player"))

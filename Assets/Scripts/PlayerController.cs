@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject currentWeapon;
     private bool inShip;
     public GameObject interactionPrompt;
     public GameObject torpedoObject;
@@ -29,6 +28,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PlayerMovement();
+        if (Input.GetKeyDown(KeyCode.E)) { CheckInteraction(); }
     }
 
     void Awake()
@@ -82,10 +82,8 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (currentWeapon != null)
-                {
 
-                }
+
             }
             //when player clicks the mouse, makes the correct attack depending on item tag: melee or ranged. Attack with be in the dirction towards the mouse's position on the screen
         }
