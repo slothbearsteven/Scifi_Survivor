@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PlayerMovement();
+        PlayerAttack();
         if (Input.GetKeyDown(KeyCode.E)) { CheckInteraction(); }
     }
 
@@ -82,10 +83,9 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-
-
+                Weapon.WeaponAttack();
             }
-            //when player clicks the mouse, makes the correct attack depending on item tag: melee or ranged. Attack with be in the dirction towards the mouse's position on the screen
+            //when player clicks the mouse, calls to the weapon script to trigger the attack
         }
 
     }
