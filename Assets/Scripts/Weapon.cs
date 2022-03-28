@@ -6,19 +6,26 @@ public class Weapon : MonoBehaviour
 {
 
 
-    public GameObject bulletSpawnPoint;
+    public GameObject weaponProjectile;
+    public GameObject bulletSpawner;
+    public static Quaternion bulletSpawnRotation;
+    public static GameObject bulletToFire;
+    public static Vector3 bulletSpawnPoint;
     private int clipCapacity;
     private float reloadSpeed;
     // Start is called before the first frame update
     void Awake()
     {
-
+        bulletToFire = weaponProjectile;
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        bulletSpawnPoint = bulletSpawner.transform.position;
+        bulletSpawnRotation = transform.rotation;
+
         WeaponMovement();
     }
 
@@ -33,5 +40,10 @@ public class Weapon : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, roatationZ);
     }
 
-    void WeaponAttack() { }
+    public static void WeaponAttack()
+    {
+
+
+        Instantiate(bulletToFire, bulletSpawnPoint, bulletSpawnRotation);
+    }
 }
