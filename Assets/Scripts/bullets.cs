@@ -16,12 +16,5 @@ public class bullets : Projectile
     {
         ProjectileMovement(speed);
     }
-    void OnCollisionEnter2d(Collider2D col)
-    {
-        Destroy(gameObject);
-    }
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        Destroy(gameObject);
-    }
+
 }

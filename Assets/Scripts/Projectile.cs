@@ -24,7 +24,11 @@ public class Projectile : MonoBehaviour
     }
 
 
-
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        Debug.Log("collision detected");
+        Destroy(gameObject);
+    }
 
 }
 
