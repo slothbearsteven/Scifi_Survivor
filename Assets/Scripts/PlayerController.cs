@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public static int torpedoCount;
     private Vector2 boxSize = new Vector2(0.1f, 1f);
     private Rigidbody2D shipRB;
-    public static float playerHealth;
+    public static float playerHealth = 100;
     public static float playerOxygen;
     // public static List<GameObject> inventory;
     private float playerSpeed = 10;
@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMovement();
         PlayerAttack();
+        OxygenToHealth();
         if (Input.GetKeyDown(KeyCode.E)) { CheckInteraction(); }
     }
 
@@ -67,14 +68,22 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.up * playerSpeed * verticalInput * Time.deltaTime, Space.World);
             transform.Translate(Vector3.right * playerSpeed * horizontalIput * Time.deltaTime, Space.World);
 
-            while (verticalInput > 0 || horizontalIput > 0 || verticalInput < 0 || horizontalIput < 0)
+            if (verticalInput > 0 || horizontalIput > 0 || verticalInput < 0 || horizontalIput < 0)
             {
                 playerOxygen -= Time.deltaTime;
+
                 if (playerOxygen <= 0) { playerOxygen = 0; }
+
             }
         }
     }
-
+    void OxygenToHealth()
+    {
+        if (playerOxygen == 0)
+        {
+            playerHealth -= Time.deltaTime;
+        }
+    }
     void PlayerAttack()
     {
         if (inShip)
