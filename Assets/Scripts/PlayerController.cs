@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMovement();
         PlayerAttack();
-        OxygenToHealth();
+        OxygenAndHealth();
         if (Input.GetKeyDown(KeyCode.E)) { CheckInteraction(); }
     }
 
@@ -72,17 +72,31 @@ public class PlayerController : MonoBehaviour
             {
                 playerOxygen -= Time.deltaTime;
 
-                if (playerOxygen <= 0) { playerOxygen = 0; }
+
 
             }
         }
     }
-    void OxygenToHealth()
+    void OxygenAndHealth()
     {
+        if (playerOxygen <= 0) { playerOxygen = 0; }
         if (playerOxygen == 0)
         {
             playerHealth -= Time.deltaTime;
         }
+        if (playerHealth <= 0)
+        {
+            playerHealth = 0;
+        }
+        if (playerHealth > 100)
+        {
+            playerHealth = 100;
+        }
+        if (playerOxygen > 100)
+        {
+            playerOxygen = 100;
+        }
+
     }
     void PlayerAttack()
     {
