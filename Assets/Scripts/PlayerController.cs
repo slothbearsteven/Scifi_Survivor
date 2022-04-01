@@ -14,9 +14,9 @@ public class PlayerController : MonoBehaviour
     public static int torpedoCount;
     private Vector2 boxSize = new Vector2(0.1f, 1f);
     private Rigidbody2D shipRB;
-    public static int playerHealth;
-    public static int playerOxygen;
-    public static List<GameObject> inventory;
+    public static float playerHealth;
+    public static float playerOxygen;
+    // public static List<GameObject> inventory;
     private float playerSpeed = 10;
     // Start is called before the first frame update
     void Start()
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        playerOxygen = 100;
         if (SceneManager.GetActiveScene().name == "Space")
         {
             inShip = true;
@@ -65,6 +66,12 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f, roatationZ);
             transform.Translate(Vector3.up * playerSpeed * verticalInput * Time.deltaTime, Space.World);
             transform.Translate(Vector3.right * playerSpeed * horizontalIput * Time.deltaTime, Space.World);
+
+            while (verticalInput > 0 || horizontalIput > 0 || verticalInput < 0 || horizontalIput < 0)
+            {
+                playerOxygen -= Time.deltaTime;
+                if (playerOxygen <= 0) { playerOxygen = 0; }
+            }
         }
     }
 
