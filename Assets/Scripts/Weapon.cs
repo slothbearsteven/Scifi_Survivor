@@ -11,12 +11,15 @@ public class Weapon : MonoBehaviour
     public static Quaternion bulletSpawnRotation;
     public static GameObject bulletToFire;
     public static Vector3 bulletSpawnPoint;
-    private int clipCapacity;
-    private float reloadSpeed;
+    public static int clipCapacity = 20;
+    public static int currentClipCount;
+
+    public static float reloadSpeed = 2;
     // Start is called before the first frame update
     void Awake()
     {
         bulletToFire = weaponProjectile;
+        currentClipCount = clipCapacity;
     }
 
 
@@ -43,7 +46,10 @@ public class Weapon : MonoBehaviour
     public static void WeaponAttack()
     {
 
-
+        currentClipCount--;
         Instantiate(bulletToFire, bulletSpawnPoint, bulletSpawnRotation);
+
     }
+
+
 }

@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     private bool inShip;
     public GameObject interactionPrompt;
+    public GameObject reloadingPrompt;
     public GameObject torpedoObject;
     private float shipSpeed = 5;
     public static int shipLife;
@@ -111,9 +113,13 @@ public class PlayerController : MonoBehaviour
         else
         {
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && Weapon.currentClipCount > 0)
             {
                 Weapon.WeaponAttack();
+            }
+            else if (Input.GetMouseButtonDown(0) && Weapon.currentClipCount == 0)
+            {
+                StartCoroutine(ReloadRoutine());
             }
             //when player clicks the mouse, calls to the weapon script to trigger the attack
         }
@@ -144,5 +150,21 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator ReloadRoutine()
+    {
+
+        reloadingPrompt.SetActive(true);
+
+        yield return new WaitForSeconds(Weapon.reloadSpeed);
+
+        if (Weapon.currentClipCount == 0)
+        {
+
+            Weapon.currentClipCount = Weapon.clipCapacity;
+            reloadingPrompt.SetActive(false);
+        }
+
     }
 }

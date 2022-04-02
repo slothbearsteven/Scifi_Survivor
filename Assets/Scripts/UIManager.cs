@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public Text oxygen;
     public Text health;
+    public Text ammo;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,9 @@ public class UIManager : MonoBehaviour
     {
         float currentO2 = Mathf.Round(PlayerController.playerOxygen);
         float currentHealth = Mathf.Round(PlayerController.playerHealth);
+        float currentAmmo = Mathf.Round(Weapon.currentClipCount);
         oxygen.text = $"O2:{currentO2}";
         health.text = $"Health:{currentHealth}";
+        ammo.text = $"Rifle:{currentAmmo} / {Weapon.clipCapacity}";
     }
 }
