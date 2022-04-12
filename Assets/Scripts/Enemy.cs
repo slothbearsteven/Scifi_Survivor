@@ -7,14 +7,17 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    void OnCollision
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        Debug.Log("collision on Enemy");
+    }
 }
