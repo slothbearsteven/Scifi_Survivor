@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-
+    public GameObject impactParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +27,7 @@ public class Projectile : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         Debug.Log("collision detected");
+         Instantiate(impactParticles, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
