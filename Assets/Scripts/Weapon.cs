@@ -48,6 +48,7 @@ public class Weapon : MonoBehaviour
 
         currentClipCount--;
         Instantiate(bulletToFire, bulletSpawnPoint, bulletSpawnRotation);
+        
 
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class bullets : Projectile
 {
-    private float speed = 20;
+    private float speed = 40;
     // Start is called before the first frame update
     void Start()
     {
