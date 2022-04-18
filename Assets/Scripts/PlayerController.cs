@@ -1,8 +1,11 @@
+using System.Drawing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
+using Color = UnityEngine.Color;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +24,8 @@ public class PlayerController : MonoBehaviour
     // public static List<GameObject> inventory;
     private float playerSpeed = 10;
     // Start is called before the first frame update
+
+    private SpriteRenderer playerRenderer;
     void Start()
     {
 
@@ -37,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        playerRenderer = GetComponent<SpriteRenderer>();
         playerOxygen = 100;
         if (SceneManager.GetActiveScene().name == "Space")
         {
@@ -167,4 +173,11 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    public static void PlayerDamaged()
+    {
+        playerHealth -= 10 * Time.deltaTime;
+    }
+
+
 }

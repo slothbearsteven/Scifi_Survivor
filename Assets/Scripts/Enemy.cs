@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
 
     int enemyHealth = 20;
+    bool isAttacking = false;
     public GameObject deathParticles;
     void Start()
     {
@@ -17,6 +18,10 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         DeathHandler();
+        if (isAttacking)
+        {
+            PlayerController.PlayerDamaged();
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -37,6 +42,17 @@ public class Enemy : MonoBehaviour
         {
             enemyHealth -= 5;
             Destroy(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isAttacking = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isAttacking = false;
         }
     }
 }
