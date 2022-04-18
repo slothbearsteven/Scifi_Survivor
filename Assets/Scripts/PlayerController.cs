@@ -9,7 +9,7 @@ using Color = UnityEngine.Color;
 
 public class PlayerController : MonoBehaviour
 {
-    private bool inShip;
+    public static bool inShip;
     public GameObject interactionPrompt;
     public GameObject reloadingPrompt;
     public GameObject torpedoObject;
@@ -34,10 +34,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement();
-        PlayerAttack();
-        OxygenAndHealth();
-        if (Input.GetKeyDown(KeyCode.E)) { CheckInteraction(); }
+        if (GameManager.gameOver == false)
+        {
+            PlayerMovement();
+            PlayerAttack();
+            OxygenAndHealth();
+            if (Input.GetKeyDown(KeyCode.E)) { CheckInteraction(); }
+        }
     }
 
     void Awake()
@@ -105,6 +108,11 @@ public class PlayerController : MonoBehaviour
             playerOxygen = 100;
         }
 
+
+        if (playerHealth == 0)
+        {
+            GameManager.gameOver = true;
+        }
     }
     void PlayerAttack()
     {
