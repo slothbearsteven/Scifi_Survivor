@@ -31,6 +31,9 @@ public class UIManager : MonoBehaviour
 
         if (GameManager.gameOver)
         {
+            oxygen.text = "";
+            health.text = "";
+            ammo.text = "";
             gameOverDisplay.SetActive(true);
         }
     }
