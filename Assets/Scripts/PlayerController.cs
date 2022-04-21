@@ -182,9 +182,9 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public static void PlayerDamaged()
+    public static void PlayerDamaged(int DOT)
     {
-        playerHealth -= 10 * Time.deltaTime;
+        playerHealth -= DOT * Time.deltaTime;
     }
 
 
