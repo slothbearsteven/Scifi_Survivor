@@ -9,13 +9,13 @@ public class LaserEffects : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(LifeSpanRoutine());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     IEnumerator LifeSpanRoutine()
