@@ -5,25 +5,32 @@ using UnityEngine;
 public class SecuritySpawner : MonoBehaviour
 {
     public GameObject securityDronePrefab;
+
+    float respawnRate = 5;
+    float timePassed = 0;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SecuritySpawnRoutine());
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-    }
-
-    IEnumerator SecuritySpawnRoutine()
-    {
         if (SecurityButton.securityIsActive)
         {
-            yield return new WaitForSeconds(5);
-            Instantiate(securityDronePrefab, transform.position, transform.rotation);
+            timePassed += Time.deltaTime;
+            if (timePassed >= respawnRate)
+            {
+                timePassed = 0;
+                Instantiate(securityDronePrefab, transform.position, transform.rotation);
+            }
+
+
+
         }
 
     }
+
+
 }

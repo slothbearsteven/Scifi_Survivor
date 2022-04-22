@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class SecurityButton : Interactable
 {
+    private int triggerCount;
     public static bool securityIsActive;
+    public GameObject alarmLight;
 
     public override void Interact()
     {
-        if (securityIsActive)
+        triggerCount++;
+        if (triggerCount == 3) triggerCount = 1;
+        if (triggerCount % 2 == 0)
         {
             securityIsActive = false;
         }
-        if (!securityIsActive)
-        {
-            securityIsActive = true;
-        }
+        else { securityIsActive = true; }
     }
     // Start is called before the first frame update
     void Awake()
@@ -26,6 +27,11 @@ public class SecurityButton : Interactable
     // Update is called once per frame
     void Update()
     {
+        if (securityIsActive)
+        {
+            alarmLight.SetActive(true);
 
+        }
+        else { alarmLight.SetActive(false); }
     }
 }
