@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SecurityButton : Interactable
 {
-    private int triggerCount;
+    private int triggerCount = 1;
     public static bool securityIsActive;
     public GameObject alarmLight;
 
